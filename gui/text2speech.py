@@ -11,8 +11,6 @@ import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
 from gtts import gTTS
-import librosa
-import soundfile as sf
 from PyQt5.QtMultimedia import QSound 
 from playsound import playsound
 
@@ -62,8 +60,19 @@ class Ui_MainWindow(object):
         print(mytext)
         self.text2speech(mytext,'audio.wav')
         # filename = 'beal.wav'
-        # QtMultimedia.QSound.play('D:\\6thSense\\gui\\beal.wav')
-        playsound("audio.wav")
+        #QtMultimedia.QSound.play('audio.wav')
+        filename = 'audio.wav'
+        # QSound.play(filename)
+        fullpath = QtCore.QDir.current().absoluteFilePath(filename)
+        print(fullpath) 
+        url = QtCore.QUrl.fromLocalFile(fullpath)
+        print(url)
+        content = QtMultimedia.QMediaContent(url)
+        player = QtMultimedia.QMediaPlayer()
+        player.setMedia(content)
+        player.play()
+        os.system("audio.wav")
+        #playsound("audio.wav")
     
 
 
