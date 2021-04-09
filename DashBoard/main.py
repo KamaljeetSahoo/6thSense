@@ -17,6 +17,8 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.nn as nn
 import pytesseract
+from pygame import mixer
+from gtts import gTTS
 
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
@@ -170,6 +172,26 @@ class DashBoard(Ui_MainWindow):
         self.ocrstring = ""
         
         self.ocr_upload.clicked.connect(self.upload_ocr_image)
+
+        self.tts_button.clicked.connect(self.speech)
+
+    
+    def text2speech(self,text,file_name):
+        language = 'en'
+        myobj = gTTS(text=text, lang=language, slow=False)
+        name = file_name
+        print(name)
+        myobj.save(name)
+
+    def speech(self):
+        mytext = self.tts_input.toPlainText()
+        print(mytext)
+        self.text2speech(mytext,'audio.mp3')
+        mixer.init()
+        mixer.music.load('audio.mp3')
+        mixer.music.play()
+        time.sleep(5)
+        mixer.music.unload()
         
 
     

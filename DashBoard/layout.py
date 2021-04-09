@@ -89,9 +89,9 @@ class Ui_MainWindow(object):
         self.tts_button.setGeometry(QtCore.QRect(30, 610, 821, 41))
         self.tts_button.setObjectName("tts_button")
         self.dashboard_navigator.addTab(self.text_to_speech, "")
-        self.speech_to_text = QtWidgets.QWidget()
-        self.speech_to_text.setObjectName("speech_to_text")
-        self.dashboard_navigator.addTab(self.speech_to_text, "")
+        # self.speech_to_text = QtWidgets.QWidget()
+        # self.speech_to_text.setObjectName("speech_to_text")
+        # self.dashboard_navigator.addTab(self.speech_to_text, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -127,7 +127,7 @@ class Ui_MainWindow(object):
         self.dashboard_navigator.setTabText(self.dashboard_navigator.indexOf(self.image_captioning), _translate("MainWindow", "Image Captioning"))
         self.tts_button.setText(_translate("MainWindow", "Play Generated Speech"))
         self.dashboard_navigator.setTabText(self.dashboard_navigator.indexOf(self.text_to_speech), _translate("MainWindow", "Text To Speech"))
-        self.dashboard_navigator.setTabText(self.dashboard_navigator.indexOf(self.speech_to_text), _translate("MainWindow", "Speech To Text"))
+        #self.dashboard_navigator.setTabText(self.dashboard_navigator.indexOf(self.speech_to_text), _translate("MainWindow", "Speech To Text"))
         self.actionhello.setText(_translate("MainWindow", "hello"))
 
 
