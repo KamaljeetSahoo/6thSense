@@ -85,7 +85,7 @@ while(True):
     cv2.imshow('frame', r2b(canvas))
     
     scrn=np.zeros((0.1*imageToTest.shape[0],0.1*imageToTest.shape[1],3))
-    if len(crop)=>2:
+    if len(crop)>=2:
         cv2.imshow('frame_1', r2b(crop[0]))
         cv2.imshow('frame_2', r2b(crop[1]))
     elif len(crop)==1:
