@@ -182,7 +182,7 @@ class AnotherWindow(QMainWindow):
 		timestamp = time.strftime("%d-%b-%Y-%H_%M_%S")
 
 		# capture the image and save it on the save path
-		self.capture.capture("D:\\rakuten\\image.jpg")
+		self.capture.capture("P:\\6thSense\\gui\\image.jpg")
 
 		# increment the sequence
 		self.save_seq += 1
@@ -290,7 +290,7 @@ class Ui_MainWindow(object):
         self.w = AnotherWindow()
         self.w.show()
         self.caption.setPlainText(self.captionString)
-        fileName = "D:\\rakuten\\image.jpg" 
+        fileName = "P:\\6thSense\\gui\\image.jpg" 
         r = requests.post(
         "https://api.deepai.org/api/neuraltalk",
         files={

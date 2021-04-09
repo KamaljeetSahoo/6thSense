@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>903</width>
+    <height>794</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="dashboard_navigator">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>1001</width>
+      <height>761</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="hand_symbol_recognition">
+     <attribute name="title">
+      <string>Hand Symbol Recognition</string>
+     </attribute>
+     <widget class="QLabel" name="input_feed">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>400</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Input Feed</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pose_estimation_feed">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>20</y>
+        <width>400</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pose Estimation</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="roi_feed">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>350</y>
+        <width>400</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ROI</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="final_feed">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>350</y>
+        <width>341</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Final Feed</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="start_hsr">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>680</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Here</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="ocr">
+     <attribute name="title">
+      <string>OCR</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="image_captioning">
+     <attribute name="title">
+      <string>Image Captioning</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="text_to_speech">
+     <attribute name="title">
+      <string>Text To Speech</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="speech_to_text">
+     <attribute name="title">
+      <string>Speech To Text</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionhello">
+   <property name="text">
+    <string>hello</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
