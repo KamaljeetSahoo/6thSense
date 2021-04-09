@@ -83,8 +83,18 @@ while(True):
     canvas = draw_bodypose(image.copy(), candidate, subset, 0.3)
     canvas1 ,crop= roi(image.copy(), candidate, subset, 0.3)
     cv2.imshow('frame', r2b(canvas))
-    for i,j in enumerate(crop):
-         cv2.imshow('frame_'+str(i), r2b(j))
+    
+    scrn=np.zeros((0.1*cavas.shape[0],0.1*cavas.shape[1],3))
+    if len(crop)=>2:
+        cv2.imshow('frame_1', r2b(crop[0]))
+        cv2.imshow('frame_2', r2b(crop[1]))
+    elif len(crop)==1:
+        cv2.imshow('frame_1', r2b(crop[0]))
+        cv2.imshow('frame_2',scrn)
+    elif len(crop)==0:
+        cv2.imshow('frame_1',scrn)
+        cv2.imshow('frame_2',scrn)
+ 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
