@@ -1,5 +1,5 @@
 from layout import Ui_MainWindow
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtMultimedia import *
@@ -13,6 +13,23 @@ import torch
 import numpy as np
 import sys
 import time
+import torchvision
+import torchvision.transforms as transforms
+import torch.nn as nn
+import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
+
+classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'del', 'nothing', 'space']
+
+net = torchvision.models.mobilenet_v3_small(pretrained=False)
+net.classifier[3] = nn.Linear(in_features=1024, out_features=len(classes), bias=True)
+net.load_state_dict(torch.load('epoch.pt'))
+
+def transformation(image):
+    trans = transforms.Compose([transforms.ToPILImage(), transforms.Resize((224,224)), transforms.ToTensor()])
+    image = trans(image)
+    return image
 
 def Net_Prediction(model, image, device, backbone = 'Mobilenet'):
     scale_search = [1]
@@ -56,6 +73,9 @@ def Net_Prediction(model, image, device, backbone = 'Mobilenet'):
         paf_avg += paf / len(scale_search)
         
     return heatmap_avg, paf_avg
+
+def r2b(image):
+    return image[:, :, [2, 1, 0]]
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = PoseEstimationWithMobileNet().to(device)
@@ -124,7 +144,7 @@ class AnotherWindow(QMainWindow):
 	def click_photo(self):
 
 		timestamp = time.strftime("%d-%b-%Y-%H_%M_%S")
-		self.capture.capture("P:\\6thSense\\gui\\image.jpg")
+		self.capture.capture("P:\\6thSense\\DashBoard\\image.jpg")
 		self.save_seq += 1
 
 	def change_folder(self):
@@ -147,11 +167,44 @@ class DashBoard(Ui_MainWindow):
         self.ic_upload.clicked.connect(self.upload)
         self.ic_camera.clicked.connect(self.cam)
         self.captionString = ""
+        self.ocrstring = ""
+        
+        self.ocr_upload.clicked.connect(self.upload_ocr_image)
         
 
     
     def clicked(self):
         print("clicked")
+
+    def upload_ocr_image(self):
+        self.openFileNameDialog_ocr()
+
+    def openFileNameDialog_ocr(self):
+        self.ocr_output.setPlainText(self.ocrstring)
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(None,"QFileDialog.getOpenFileName()", "","All Files (*);;Image files (*.jpg *.gif)", options=options)
+        img=cv2.imread(fileName)
+        #img2char=pytesseract.image_to_string(img)
+        payload = {'isOverlayRequired': False,
+               'apikey': 'e9ee9920f688957',
+               'language': 'eng',
+               }
+        filename = fileName
+        with open(filename, 'rb') as f:
+            r = requests.post('https://api.ocr.space/parse/image',
+                          files={filename: f},
+                          data=payload,
+                          )
+        self.ocrstring = r.json()
+        print(self.ocrstring['ParsedResults'][0]['ParsedText'])
+        self.ocrstring = self.ocrstring['ParsedResults'][0]['ParsedText']
+
+        self.ocr_output.setPlainText(str(self.ocrstring))
+        self.ocrstring = ""
+        image = QtGui.QPixmap(fileName)
+        self.ocr_image.setPixmap(image)
+
 
     def upload(self):
         self.openFileNameDialog()
@@ -161,7 +214,6 @@ class DashBoard(Ui_MainWindow):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getOpenFileName(None,"QFileDialog.getOpenFileName()", "","All Files (*);;Image files (*.jpg *.gif)", options=options)
-        
         r = requests.post(
         "https://api.deepai.org/api/neuraltalk",
         files={
@@ -170,6 +222,9 @@ class DashBoard(Ui_MainWindow):
         headers={'api-key': 'd1d4ec9c-ac2b-4077-820b-177732187475'}
         )
         self.captionString = r.json()['output']
+        self.im = QtGui.QPixmap(fileName)
+        self.im = self.im.scaled(64, 64, QtCore.Qt.KeepAspectRatio)
+        self.ic_inp_image.setPixmap(self.im)
         self.ic_image_caption.setPlainText(self.captionString)
         self.captionString = ""
     
@@ -177,7 +232,7 @@ class DashBoard(Ui_MainWindow):
         self.w = AnotherWindow()
         self.w.show()
         self.ic_image_caption.setPlainText(self.captionString)
-        fileName = "P:\\6thSense\\gui\\image.jpg" 
+        fileName = "P:\\6thSense\\DashBoard\\image.jpg" 
         r = requests.post(
         "https://api.deepai.org/api/neuraltalk",
         files={
@@ -186,6 +241,8 @@ class DashBoard(Ui_MainWindow):
         headers={'api-key': 'd1d4ec9c-ac2b-4077-820b-177732187475'}
         )
         self.captionString = r.json()['output']
+        self.im = QtGui.QPixmap(fileName)
+        self.ic_inp_image.setPixmap(self.im)
         self.ic_image_caption.setPlainText(self.captionString)
         self.captionString = ""
 
@@ -195,6 +252,7 @@ class DashBoard(Ui_MainWindow):
             vid = cv2.VideoCapture(0)
         while(vid.isOpened()):
             ret, image = vid.read()
+            inp_img = image.copy()
             img = image.copy()
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             imageToTest = cv2.resize(image, (0, 0), fx=0.3, fy=0.3, interpolation=cv2.INTER_CUBIC)
@@ -205,16 +263,29 @@ class DashBoard(Ui_MainWindow):
             connection_all, special_k = connection(all_peaks, paf, imageToTest)
             candidate, subset = merge(all_peaks, connection_all, special_k)
             canvas = draw_bodypose(image, candidate, subset, 0.3)
-            #frame, frame_grey
+            canvas1 ,crop= roi(inp_img, candidate, subset, 0.3)
             frame = canvas[:, :, [2, 1, 0]]
             frame = np.require(frame, np.uint8, 'C')
-
-            image = QImage(frame, frame.shape[1], frame.shape[0], frame.shape[2]*frame.shape[1],QImage.Format_RGB888)
-            gray = QImage(img, img.shape[1],img.shape[0],img.strides[0],QImage.Format_RGB888)
+            canvas1 = r2b(canvas1)
+            canvas1 = np.require(canvas1, np.uint8, 'C')
+            if(len(crop)>0):
+                inp_tensor = transformation(crop[0])
+                output = net(inp_tensor.unsqueeze(0))
+                _, predicted = torch.max(output, 1)
+                self.out_symbol.setText(classes[predicted])
+                crop[0] = r2b(crop[0])
+                crop[0] = np.require(crop[0], np.uint8, 'C')
+                roi_image = QImage(crop[0], crop[0].shape[1], crop[0].shape[0], crop[0].strides[0], QImage.Format_RGB888)
+                self.roi_feed.setPixmap(QtGui.QPixmap.fromImage(roi_image))
+                pose_esti = QImage(canvas1, canvas1.shape[1], canvas1.shape[0], canvas1.strides[0], QImage.Format_RGB888)
+                self.pose_estimation_feed.setPixmap(QtGui.QPixmap.fromImage(pose_esti))
+            image = QImage(frame, frame.shape[1], frame.shape[0], frame.shape[2]*frame.shape[1], QImage.Format_RGB888)
+            gray = QImage(img, img.shape[1], img.shape[0], img.strides[0], QImage.Format_RGB888)
             self.final_feed.setPixmap(QtGui.QPixmap.fromImage(image))
             self.input_feed.setPixmap(QtGui.QPixmap.fromImage(gray))
+            
             key = cv2.waitKey(1) & 0xFF
-            if key == ord("q"):
+            if key == 27:         # wait for ESC key to exit
                 vid.release()
                 break
 

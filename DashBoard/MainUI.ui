@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="hand_symbol_recognition">
      <attribute name="title">
@@ -97,7 +97,7 @@
      <widget class="QPushButton" name="start_hsr">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>170</x>
         <y>680</y>
         <width>111</width>
         <height>41</height>
@@ -107,11 +107,80 @@
        <string>Start Here</string>
       </property>
      </widget>
+     <widget class="QLabel" name="out_symbol">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>680</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Output</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="ocr">
      <attribute name="title">
       <string>OCR</string>
      </attribute>
+     <widget class="QPushButton" name="ocr_upload">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>50</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upload Image</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ocr_image">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>180</y>
+        <width>761</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Input Image</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="ocr_output">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>580</y>
+        <width>791</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Output Result&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="image_captioning">
      <attribute name="title">
@@ -174,6 +243,29 @@
      <attribute name="title">
       <string>Text To Speech</string>
      </attribute>
+     <widget class="QTextEdit" name="tts_input">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>841</width>
+        <height>471</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tts_button">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>610</y>
+        <width>821</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Play Generated Speech</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="speech_to_text">
      <attribute name="title">
