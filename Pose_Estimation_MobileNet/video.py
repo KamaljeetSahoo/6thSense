@@ -1,6 +1,6 @@
 import cv2
 from model import PoseEstimationWithMobileNet
-from utils.util import peaks, connection, merge, draw_bodypose, padRightDownCorner
+from utils.util import peaks, connection, merge, draw_bodypose, padRightDownCorner, roi
 import torch
 import numpy as np
 
