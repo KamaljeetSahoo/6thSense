@@ -220,3 +220,34 @@ def draw_part(canvas, all_peaks, ID, scale=1):
             cv2.circle(canvas, (int(all_peaks[ID[i]][j][0]/scale), int(all_peaks[ID[i]][j][1]/scale)), int(dotwidth), (0,0,255), thickness=-1)
         
     return canvas
+
+
+def roi(canvas, candidate, subset, scale=1):
+  stickwidth = 2
+  dotwidth = 2
+  limbSeq = [[2, 3], [2, 6], [3, 4], [4, 5], [6, 7], [7, 8], [2, 9], [9, 10], \
+              [10, 11], [2, 12], [12, 13], [13, 14], [2, 1], [1, 15], [15, 17], \
+              [1, 16], [16, 18], [3, 17], [6, 18]]
+
+
+  h,w=canvas.shape[0],canvas.shape[1]
+  canvas1=canvas.copy()
+  lst=[]
+  for i in range(18):
+      for n in range(len(subset)):
+          index = int(subset[n][i])
+          if index == -1:
+              continue
+          if (i==4 or i==7):
+            #print(i)
+            x, y = candidate[index][0:2]
+            if y<0.8*h:
+              color = (0, 0, 255)
+              thickness = 5
+              start_point=(int((x-0.05*w)/scale),int((y-0.1*h)/scale))
+              end_point=(int((x+0.05*w)/scale),int(y/scale))
+              cv2.rectangle(canvas1, start_point, end_point, color, thickness)
+              #plt.imshow(canvas1)
+              #plt.show()
+              lst.append(canvas[start_point[1]:end_point[1],start_point[0]:end_point[0]])
+  return canvas1,lst         
