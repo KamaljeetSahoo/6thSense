@@ -63,6 +63,7 @@ class Ui_MainWindow(object):
             image = imutils.resize(self.image,width=800)
             frame = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             frame_gray = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
+            print(type(frame_gray), frame_gray.shape)
             image = QImage(frame, frame.shape[1],frame.shape[0],frame.strides[0],QImage.Format_RGB888)
             gray = QImage(frame_gray, frame_gray.shape[1],frame_gray.shape[0],frame_gray.strides[0],QImage.Format_RGB888)
             self.input.setPixmap(QtGui.QPixmap.fromImage(image))

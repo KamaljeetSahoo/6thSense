@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="hand_symbol_recognition">
      <attribute name="title">
@@ -117,6 +117,58 @@
      <attribute name="title">
       <string>Image Captioning</string>
      </attribute>
+     <widget class="QPushButton" name="ic_upload">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>50</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upload an Image</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ic_camera">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>50</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Click a Picture</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ic_inp_image">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>170</y>
+        <width>741</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Input Image</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="ic_image_caption">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>570</y>
+        <width>821</width>
+        <height>141</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="text_to_speech">
      <attribute name="title">
