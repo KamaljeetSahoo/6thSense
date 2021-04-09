@@ -47,6 +47,17 @@ def Net_Prediction(model, image, device, backbone = 'Mobilenet'):
         
     return heatmap_avg, paf_avg
 
+
+
+
+def r2b(image):
+    return image[:, :, [2, 1, 0]]
+
+
+
+
+
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = PoseEstimationWithMobileNet().to(device)
 model.load_state_dict(torch.load('weights/MobileNet_bodypose_model', map_location=lambda storage, loc: storage))
@@ -55,6 +66,13 @@ model.eval()
 
 vid = cv2.VideoCapture(0)
 
+
+
+
+
+
+
+
 while(True):
     ret, image = vid.read()
     imageToTest = cv2.resize(image, (0, 0), fx=0.3, fy=0.3, interpolation=cv2.INTER_CUBIC)
@@ -62,8 +80,11 @@ while(True):
     all_peaks = peaks(heatmap, 0.1)
     connection_all, special_k = connection(all_peaks, paf, imageToTest)
     candidate, subset = merge(all_peaks, connection_all, special_k)
-    canvas = draw_bodypose(image, candidate, subset, 0.3)
-    cv2.imshow('frame', canvas[:, :, [2, 1, 0]])
+    canvas = draw_bodypose(image.copy(), candidate, subset, 0.3)
+    canvas1 ,crop= roi(image.copy(), candidate, subset, 0.3)
+    cv2.imshow('frame', r2b(canvas))
+    for i,j in enumerate(crop):
+         cv2.imshow('frame_'+str(i), r2b(j))
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
