@@ -159,7 +159,7 @@ Run **Video.py** to get the pose estimation and a roi around the hand which coou
 
 ### Text and speech transformation
 
-**text2speech_and_speech2text.ipnyb contains the code for speech and text conversion
+**text2speech_and_speech2text.ipnyb** contains the code for speech and text conversion.
 
 
 ### OCR
