@@ -21,7 +21,7 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 
 
 
--->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -35,7 +35,7 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 <br />
 <p align="center">
   <a href="https://github.com/KamaljeetSahoo/6thSense">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="logo.jpeg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">project_title</h3>
