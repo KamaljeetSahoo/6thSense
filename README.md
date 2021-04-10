@@ -2,7 +2,7 @@
 
 Find all the codes to run and build all the features of 6th Sense technologies.
 
-##Hand Symbol Recognition
+## Hand Symbol Recognition
 
 The folder Hand_Symbol_recognition Contains all the required codes for Hand Symbol Recognition.
 
@@ -105,24 +105,15 @@ The folder Hand_Symbol_recognition Contains all the required codes for Hand Symb
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
+### Requirement
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+Run the below code in the terminal of your environment.
+
   ```sh
-  npm install npm@latest -g
+  pip install -r requirements.txt 
   ```
 
-### Installation
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
 
 
 
