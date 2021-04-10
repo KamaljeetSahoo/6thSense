@@ -2,10 +2,6 @@
 
 Find all the codes to run and build all the features of 6th Sense technologies.
 
-## Hand Symbol Recognition
-
-The folder Hand_Symbol_recognition Contains all the required codes for Hand Symbol Recognition.
-
 
 
 
