@@ -16,11 +16,10 @@ import time
 import torchvision
 import torchvision.transforms as transforms
 import torch.nn as nn
-import pytesseract
 from pygame import mixer
 from gtts import gTTS
 
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
 classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'del', 'nothing', 'space']
 
@@ -223,9 +222,17 @@ class DashBoard(Ui_MainWindow):
         self.ocrstring = self.ocrstring['ParsedResults'][0]['ParsedText']
 
         self.ocr_output.setPlainText(str(self.ocrstring))
-        self.ocrstring = ""
+        
         image = QtGui.QPixmap(fileName)
+        image = image.scaled(500, 500, QtCore.Qt.KeepAspectRatio)
         self.ocr_image.setPixmap(image)
+        self.text2speech(self.ocrstring,'audio.mp3')
+        mixer.init()
+        mixer.music.load('audio.mp3')
+        mixer.music.play()
+        time.sleep(5)
+        mixer.music.unload()
+        self.ocrstring = ""
 
 
     def upload(self):
@@ -245,10 +252,17 @@ class DashBoard(Ui_MainWindow):
         )
         self.captionString = r.json()['output']
         self.im = QtGui.QPixmap(fileName)
-        self.im = self.im.scaled(64, 64, QtCore.Qt.KeepAspectRatio)
+        self.im = self.im.scaled(500, 500, QtCore.Qt.KeepAspectRatio)
         self.ic_inp_image.setPixmap(self.im)
         self.ic_image_caption.setPlainText(self.captionString)
+        self.text2speech(self.captionString ,'audio.mp3')
+        mixer.init()
+        mixer.music.load('audio.mp3')
+        mixer.music.play()
+        time.sleep(5)
+        mixer.music.unload()
         self.captionString = ""
+        
     
     def cam(self):
         self.w = AnotherWindow()
@@ -264,8 +278,15 @@ class DashBoard(Ui_MainWindow):
         )
         self.captionString = r.json()['output']
         self.im = QtGui.QPixmap(fileName)
+        self.im = self.im.scaled(500, 500, QtCore.Qt.KeepAspectRatio)
         self.ic_inp_image.setPixmap(self.im)
         self.ic_image_caption.setPlainText(self.captionString)
+        self.text2speech(self.captionString ,'audio.mp3')
+        mixer.init()
+        mixer.music.load('audio.mp3')
+        mixer.music.play()
+        time.sleep(5)
+        mixer.music.unload()
         self.captionString = ""
 
     def loadImage(self):
@@ -298,13 +319,21 @@ class DashBoard(Ui_MainWindow):
                 crop[0] = r2b(crop[0])
                 crop[0] = np.require(crop[0], np.uint8, 'C')
                 roi_image = QImage(crop[0], crop[0].shape[1], crop[0].shape[0], crop[0].strides[0], QImage.Format_RGB888)
-                self.roi_feed.setPixmap(QtGui.QPixmap.fromImage(roi_image))
+                roi_image = QtGui.QPixmap.fromImage(roi_image)
+                #roi_image = roi_image.scaled(400, 400, QtCore.Qt.KeepAspectRatio)
+                self.roi_feed.setPixmap(roi_image)
                 pose_esti = QImage(canvas1, canvas1.shape[1], canvas1.shape[0], canvas1.strides[0], QImage.Format_RGB888)
-                self.pose_estimation_feed.setPixmap(QtGui.QPixmap.fromImage(pose_esti))
+                pose_esti = QtGui.QPixmap.fromImage(pose_esti)
+                pose_esti = pose_esti.scaled(400, 400, QtCore.Qt.KeepAspectRatio)
+                self.pose_estimation_feed.setPixmap(pose_esti)
             image = QImage(frame, frame.shape[1], frame.shape[0], frame.shape[2]*frame.shape[1], QImage.Format_RGB888)
             gray = QImage(img, img.shape[1], img.shape[0], img.strides[0], QImage.Format_RGB888)
-            self.final_feed.setPixmap(QtGui.QPixmap.fromImage(image))
-            self.input_feed.setPixmap(QtGui.QPixmap.fromImage(gray))
+            image = QtGui.QPixmap.fromImage(image)
+            image = image.scaled(400, 400, QtCore.Qt.KeepAspectRatio)
+            gray = QtGui.QPixmap.fromImage(gray)
+            image = image.scaled(400, 400, QtCore.Qt.KeepAspectRatio)
+            self.final_feed.setPixmap(image)
+            self.input_feed.setPixmap(gray)
             
             key = cv2.waitKey(1) & 0xFF
             if key == 27:         # wait for ESC key to exit

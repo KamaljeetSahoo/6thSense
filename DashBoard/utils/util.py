@@ -244,7 +244,7 @@ def roi(canvas, candidate, subset, scale=1):
             if y<0.8*h:
               color = (0, 0, 255)
               thickness = 5
-              start_point=(int((x-0.05*w)/scale),int((y-0.1*h)/scale))
+              start_point=(int((x-0.05*w)/scale),int((y-0.15*h)/scale))
               end_point=(int((x+0.05*w)/scale),int(y/scale))
               cv2.rectangle(canvas1, start_point, end_point, color, thickness)
               #plt.imshow(canvas1)
