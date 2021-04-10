@@ -21,7 +21,7 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 
 
 
-
+-->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -35,11 +35,23 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 <br />
 <p align="center">
   <a href="https://github.com/KamaljeetSahoo/6thSense">
-    <img src="logo.jpeg" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">6th Sense</h3>
+  <h3 align="center">project_title</h3>
 
+  <p align="center">
+    project_description
+    <br />
+    <a href="https://github.com/KamaljeetSahoo/6thSense"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/KamaljeetSahoo/6thSense">View Demo</a>
+    ·
+    <a href="https://github.com/KamaljeetSahoo/6thSense/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/KamaljeetSahoo/6thSense/issues">Request Feature</a>
+  </p>
 </p>
 
 
@@ -128,10 +140,17 @@ The folder Pose_Estimation_Mobilenet contains the code for the same.
 Run **Video.py** to get the pose estimation and a roi around the hand which coould be used for hand symbol recognition.
 
 ### GUI
- ```sh
-  cd Dashboard
-  ```
+The GUI has 4 parts:
+* Hand Symbol Recognition
+* OCR 
+* Image Captioning
+* Text to Speech
+
 ### DASHBOARD
+To run the gui prepared in PyQt5 
+ ```sh
+  cd DashBoard
+  ```
  ```sh
   python main.py
   ```
