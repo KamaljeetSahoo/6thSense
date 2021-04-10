@@ -79,9 +79,12 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [https://pytorch.org/](Pytorch)
+* [https://www.tensorflow.org/](Tensorflow)
+* [https://opencv.org/](OpenCV)
+* [https://rapidapi.com/marketplace](RapidAPI)
+* [https://pypi.org/project/PyQt5/](PyQt5)
+* [https://www.pygame.org/news](PyGame)
 
 
 
