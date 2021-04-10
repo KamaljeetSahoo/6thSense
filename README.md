@@ -145,12 +145,20 @@ To run the gui prepared in PyQt5
   ```
 ## Text and speech transformation
 
-**text2speech_and_speech2text.ipnyb** contains the code for speech and text conversion.
+**text2speech_and_speech2text.ipnyb** contains the code for speech and text conversion. This is to help the dumb people to convert their words into speech. They need to write what they want to say in the text field of the software and click on **play generated speech** button. Then their words will be converted into speech that will help them to communicate.
 
 
 ### OCR
 
 **Model.py** contains the code for the ocr to get characters from an image 
+Optical character recognition convert the text present in image to machine encoded text.
+This is to help the blind people to read. To help the blind people we have converted the generated text to speech.
+This also helps the dumb people. They can write whatever they wanted to speak in a paper and upload the image. Then our software will convert that to speech.
+To use the ocr you need to click the **upload image** button ,then choose an image location  and then click open. Then our software will convert the text present in image to speech.
+
+## Image Captioning
+This software captions the image and helps the blind person to see the world. The captioned text is converted to speech to help the blind person. We can upload image in two ways.One by selecting the image location and the other one by taking picture directly from the camera.
+To upload a image select **upload an image** button and select an image location and click ok. After that our software will caption the image and convert it to text. To click an image from camera, click on the **click a picture** button and then click on click photo andd close the camera tab. Then our software will caption the clicked image and convert it to speech.
 
 
 
