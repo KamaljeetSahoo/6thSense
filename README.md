@@ -140,11 +140,14 @@ The folder Pose_Estimation_Mobilenet contains the code for the same.
 Run **Video.py** to get the pose estimation and a roi around the hand which coould be used for hand symbol recognition.
 
 ### GUI
-
+ ```sh
+  cd Dashboard
+  ```
 ### DASHBOARD
-
-
-### Text and speech transformation
+ ```sh
+  python main.py
+  ```
+## Text and speech transformation
 
 **text2speech_and_speech2text.ipnyb** contains the code for speech and text conversion.
 
