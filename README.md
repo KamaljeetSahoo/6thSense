@@ -1,4 +1,4 @@
-# 6thSense
+# 6th Sense
 
 Find all the codes to run and build all the features of 6th Sense technologies.
 
