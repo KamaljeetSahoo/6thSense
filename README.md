@@ -38,20 +38,8 @@ Find all the codes to run and build all the features of 6th Sense technologies.
     <img src="logo.jpeg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">6th Sense</h3>
 
-  <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/KamaljeetSahoo/6thSense"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/KamaljeetSahoo/6thSense">View Demo</a>
-    ·
-    <a href="https://github.com/KamaljeetSahoo/6thSense/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/KamaljeetSahoo/6thSense/issues">Request Feature</a>
-  </p>
 </p>
 
 
