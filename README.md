@@ -21,7 +21,7 @@ Find all the codes to run and build all the features of 6th Sense technologies.
 
 
 
--->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -165,10 +165,17 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
+#### Team Members
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Kamaljeet Sahoo- [KamaljeetSahoo](https://github.com/KamaljeetSahoo)
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+
+Smruti Sikha Panigrahi - [SmrutiSikha](https://github.com/SmrutiSikha)
+
+
+Komal Trishna Behera - [komalbehera](https://github.com/komalbehera)
+
+Raj Aaryaman Patra - [RajArPatra](https://github.com/RajArPatra)
 
 
 
