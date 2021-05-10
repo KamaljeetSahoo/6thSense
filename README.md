@@ -146,6 +146,10 @@ To run the gui prepared in PyQt5
  ```sh
   python main.py
   ```
+### Video
+
+[video](https://user-images.githubusercontent.com/50160354/117613574-bc6d2100-b184-11eb-9f09-ad3bfcbb46d8.mp4)
+
 ## Text and speech transformation
 
 **text2speech_and_speech2text.ipnyb** contains the code for speech and text conversion. This is to help the dumb people to convert their words into speech. They need to write what they want to say in the text field of the software and click on **play generated speech** button. Then their words will be converted into speech that will help them to communicate.
